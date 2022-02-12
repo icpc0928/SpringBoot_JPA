@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-boot-jpa-demo?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+
+#選擇hibernate的ddl(數據庫結構操作模式)參數 -----慎用! 如果部屬到正式時,小心把數據全部刪了,所以正是部屬時可以不用
+#通常使用update:如果第一次加載Hibernate時會根據我們的model(實體)類,創建新表,後續加載Hibernate時,會根據model類自動更新表結構。注意：即使後續model類結構發生變化,表結構不會刪除以前的列/行/數據,只會新增新的列。
+#create: 每次加載Hibernate時會根據model類創建新的表。注意：之前創建的表會被刪除,再重新創建新表,之前的表數據會被丟失(慎用)
+#create-drop: 加載Hibernate時會根據model類創建新的表，sessionFactory銷毀(關機)的時候,把對應的表給刪除掉。
+#validate(驗證): 每次加載Hibernate時會根據model類來驗證表的結構，不會創建新的表,或者更新表。
+  jpa:
+    hibernate:
+      ddl-auto: update
+    #log需求,可將使用的sql語法寫到log
+    show-sql: true
+    #generate-ddl: true  默認根據實體類對象來自動映射到數據庫表 通常為true
+#    generate-ddl: false 就不會自動映射到數據庫的表
