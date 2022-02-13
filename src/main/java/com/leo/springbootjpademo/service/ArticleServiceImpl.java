@@ -24,6 +24,7 @@ public class ArticleServiceImpl implements ArticleService{
         return articleRepository.save(article);
     }
 
+    @Transactional
     @Override
     public Article findArticle(Long id) {
         return articleRepository.findById(id).get();

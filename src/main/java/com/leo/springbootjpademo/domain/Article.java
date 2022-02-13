@@ -19,6 +19,11 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<Comment> comments = new ArrayList<>();
 
+    //讓Topic作為維護方 這裡標註mappedBy指向過去
+    //聯級應用在這個功能當中目前用不到 故不設置
+    @ManyToMany(mappedBy = "articles")
+    private List<Topic> topics = new ArrayList<>();
+
     public Article() {
     }
 
@@ -60,6 +65,11 @@ public class Article {
         this.comments = comments;
     }
 
+    public List<Topic> getTopics() {
+        return topics;
+    }
 
-
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
 }
